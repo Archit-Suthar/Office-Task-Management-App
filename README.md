@@ -1,2 +1,2 @@
 # Office-Task-Management-App
-App built with ReactJs, Django, Redux, MongoDB where office task management can be done
+App built with ReactJs, Django, Redux, MongoDB for office task management.
