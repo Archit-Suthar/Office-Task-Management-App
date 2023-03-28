@@ -8,11 +8,6 @@ import RegisterForm from "../../molecules/form/RegisterForm";
 const theme = createTheme();
 
 const CompanyRegister = () => {
-  const handleSubmit = (event) => {
-    const data = new FormData(event.currentTarget);
-    console.log({});
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>

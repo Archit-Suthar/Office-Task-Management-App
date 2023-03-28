@@ -10,10 +10,14 @@ import NewTicket from "./components/pages/new-ticket/NewTicket";
 import Tickets from "./components/pages/tickets/Tickets";
 import Users from "./components/pages/users/Users";
 import Help from "./components/pages/help/Help";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
+
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />

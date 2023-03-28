@@ -4,19 +4,19 @@
 - Company register UI
 - User login UI
 - frontend form validation
+- router setup
+- Landing page/home page/first page
+- /login
+- /register
 
 ## Ongoing:
 
-- router setup
-- Landing page/home page/first page
 - Dashboard
-- /login
-- /register
+- ticket creation
 
 ## Backlog:
 
 - Company can add user => then mail to the user on add(accept invitation button or credentials for user to login)
-- ticket creation
 - backend apis:
   - /get-tickets
   - /get-tickets-for-user

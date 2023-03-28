@@ -25,8 +25,9 @@ const Dashboard = (props) => {
         </Box>
 
         <Box component="div" mt={3} sx={{ display: "flex" }} flexWrap="wrap">
-          <CardItem title="Total Tickets" descText="10" />
-          <CardItem title="Total Tickets" descText="10" />
+          <CardItem title="Available Tickets" descText="10" />
+          <CardItem title="Tickets Completed" descText="10" />
+          <CardItem title="Assigned to You" descText="10" />
         </Box>
       </Box>
     </Box>

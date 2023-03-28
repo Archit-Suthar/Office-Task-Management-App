@@ -5,55 +5,48 @@ const jwt = require("jsonwebtoken");
 
 //user schema
 const userSchema = new mongoose.Schema({
-  name: {
+  user_name: {
     type: String,
     required: [true, "Please enter a valid name"],
     maxlength: [30, "Cannot exceed 30 characters"],
     minlength: [2, "Atleast  2 characters are required"],
   },
-  email: {
+  user_email: {
     type: String,
     required: true,
     unique: true,
     validate: [validator.isEmail, "Please Enter a valid Email"],
   },
-  password: {
+  user_password: {
     type: String,
     required: true,
     minlength: [6, "Atleast 6 characters are required"],
     select: false,
   },
-  avatar: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
+  company: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Company",
   },
   role: {
     type: String,
     default: "user",
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+    // admin
+    // company_owner
+    // company_user
   },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });
 
+userSchema.set("timestamps", true);
+
 userSchema.pre("save", async function (next) {
-  // Basically, it will check that if password is changed or not,
-  // if not changed it will just go to next (to the next middleware)
-  // console.log(this);
-  if (!this.isModified("password")) {
-    next();
+  if (!this.isModified("user_password")) {
+    return next();
   }
 
-  this.password = await bcrypt.hash(this.password, 10);
+  this.user_password = await bcrypt.hash(this.user_password, 10);
+  next();
 });
 
 //JWT Token
@@ -65,7 +58,7 @@ userSchema.methods.getJWTToken = function () {
 
 //password comparision
 userSchema.methods.comparePassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+  return await bcrypt.compare(enteredPassword, this.user_password);
 };
 
 //forgot password feature
