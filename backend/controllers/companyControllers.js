@@ -50,14 +50,6 @@ exports.registerCompanyUser = AsyncErrorHandler(async (req, res) => {
     return res.status(400).json({ errors: userErrors });
   }
 
-  // Create user document and save to database
-  const user = await User.create({
-    user_name,
-    user_email,
-    user_password,
-    role: "company_owner",
-  });
-
   // Create company document and save to database
   const company = await Company.create({
     company_name,
@@ -65,9 +57,23 @@ exports.registerCompanyUser = AsyncErrorHandler(async (req, res) => {
     company_contact,
     company_address,
     company_industry,
-    company_owner: user._id,
-    employees: [user._id],
   });
+
+  // Create user document and add company to it
+  const user = new User({
+    user_name,
+    user_email,
+    user_password,
+    role: "company_owner",
+    company: company._id,
+  });
+
+  // Add user to employees array in company document
+  company.employees.push(user._id);
+
+  // Save user and company documents to database
+  await user.save();
+  await company.save();
 
   sendToken(user, 201, res);
 });

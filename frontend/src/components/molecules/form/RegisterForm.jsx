@@ -27,20 +27,11 @@ const RegisterForm = () => {
   );
   const handleSubmit = (values, event) => {
     dispatch(companyUserRegister(values));
-    // if ((error.length > 0) & error.includes("duplicate key"))
-    //   toast.error("User with same email has already registered once", {
-    //     position: toast.POSITION.BOTTOM_LEFT,
-    //   });
-    // else if (error.length > 0) {
-    //   toast.error("Please enter valid information", {
-    //     position: toast.POSITION.BOTTOM_LEFT,
-    //   });
-    // }
   };
 
   useEffect(() => {
     if (isAuthenticated) navigate("/dashboard");
-  }, [isAuthenticated, error]);
+  }, [isAuthenticated]);
 
   useEffect(() => {
     if (error) {

@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../../redux/company-user/userThunks";
 import Loading from "../../atoms/loading/Loading";
 import { toast, ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 
 const theme = createTheme();
 
@@ -29,15 +30,20 @@ const UserLogin = () => {
   );
   const handleSubmit = (values, event) => {
     dispatch(loginUser(values));
-    if (error.length > 0)
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/dashboard");
+  }, [isAuthenticated]);
+  useEffect(() => {
+    if (error) {
       toast.error(error, {
         position: toast.POSITION.BOTTOM_LEFT,
       });
-  };
-
+    }
+  }, [error]);
   return (
     <ThemeProvider theme={theme}>
-      <ToastContainer />
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid

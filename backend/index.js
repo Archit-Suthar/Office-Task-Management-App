@@ -8,6 +8,7 @@ const errorHandleMiddleware = require("./middleware/Error");
 const companyRouter = require("./routes/companyRoutes");
 const userRouter = require("./routes/userRoutes");
 const ticketRouter = require("./routes/ticketRoutes");
+const userInviteRouter = require("./routes/userInviteRoutes");
 // const cloudinary = require("cloudinary")
 // const dotenv = require('dotenv')
 
@@ -39,7 +40,7 @@ connectToMongo();
 app.use("/api/v1/company", companyRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/ticket", ticketRouter);
-// app.use("/api/v1", orderRouter);
+app.use("/api/v1/company/invite", userInviteRouter);
 
 // error handle middleware
 app.use(errorHandleMiddleware);

@@ -26,13 +26,12 @@ const userSchema = new mongoose.Schema({
   company: {
     type: mongoose.Schema.ObjectId,
     ref: "Company",
+    required: true,
   },
   role: {
     type: String,
     default: "user",
-    // admin
-    // company_owner
-    // company_user
+    // admin > company_owner > company_user
   },
   resetPasswordToken: String,
   resetPasswordExpire: Date,

@@ -5,9 +5,13 @@ const {
   getUserDetails,
   updateProfile,
   updatePassword,
+  getAllUsersOfCompany,
 } = require("../controllers/usersController");
 const router = express.Router();
 const { AuthenticateUser } = require("../middleware/auth");
+
+// get list of users
+router.get("/all", AuthenticateUser, getAllUsersOfCompany);
 
 //login user
 router.post("/login", loginUser);

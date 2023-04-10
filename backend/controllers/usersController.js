@@ -5,7 +5,18 @@ const sendToken = require("../utils/jwtToken");
 // const cloudinary = require("cloudinary");
 const Company = require("../models/company");
 
-//login user
+// get all users - working
+exports.getAllUsersOfCompany = AsyncErrorHandler(async (req, res, next) => {
+  const users = await User.find({ company: req.user.company });
+  res.status(200).json({
+    status: "success",
+    data: {
+      users,
+    },
+  });
+});
+
+//login user - working
 exports.loginUser = AsyncErrorHandler(async (req, res, next) => {
   const { user_email, user_password } = req.body;
 
@@ -35,7 +46,7 @@ exports.loginUser = AsyncErrorHandler(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-//Logout User
+//Logout User - working
 exports.logoutUser = AsyncErrorHandler(async (req, res, next) => {
   res.cookie("token", null, {
     expires: new Date(Date.now()),
@@ -48,7 +59,7 @@ exports.logoutUser = AsyncErrorHandler(async (req, res, next) => {
   });
 });
 
-//Get User Details
+//Get User Details - working
 exports.getUserDetails = AsyncErrorHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id);
 

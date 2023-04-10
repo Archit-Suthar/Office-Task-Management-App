@@ -27,6 +27,11 @@ const ticketSchema = new mongoose.Schema({
     default: "Pending",
     // Possible status : Pending, In Progress, Completed, Rejected
   },
+  ticket_ofCompany: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Company",
+    required: true,
+  },
   ticket_requester: {
     type: mongoose.Schema.ObjectId,
     ref: "User",

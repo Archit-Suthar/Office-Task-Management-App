@@ -8,22 +8,28 @@
 - Landing page/home page/first page
 - /login
 - /register
+- /logout
+- /get-users
+- create ticket api - /ticket/create
+- ticket creation form
+  - /get-tickets
+  - /create-ticket
+  - /get-detailed ticket
+  - /create-ticket
+  - /read-ticket
+  - Company can add user => then mail to the user on add(accept invitation button or credentials for user to login)
+    - /add-user in a company - mail mechanism
 
 ## Ongoing:
 
-- Dashboard
-- ticket creation
+- Dashboard UI
+- APIs
+  - /update-ticket
+  - /delete-ticket
+  - /get-tickets-for-user
 
 ## Backlog:
 
-- Company can add user => then mail to the user on add(accept invitation button or credentials for user to login)
 - backend apis:
-  - /get-tickets
-  - /get-tickets-for-user
-  - /logout
-  - /get-users
-  - /add-user
-  - /create-ticket
-  - /delete-ticket
-  - /update-ticket
-  -
+  - /
+- notification

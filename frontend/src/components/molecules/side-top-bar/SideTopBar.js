@@ -25,12 +25,13 @@ import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import PeopleIcon from "@mui/icons-material/People";
 import HelpIcon from "@mui/icons-material/Help";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import CustomButton from "../../atoms/custombutton/CustomButton";
 
 const drawerWidth = 220;
 
 const SideTopBar = (props) => {
+  const location = useLocation();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -85,7 +86,12 @@ const SideTopBar = (props) => {
             key={text}
             component={Link}
             to={`/${text.toLowerCase()}`}
-            sx={{ color: "inherit" }}
+            sx={{
+              color: "inherit",
+              backgroundColor: `${
+                location.pathname === "/" + text.toLowerCase() ? "#F5F6FA" : ""
+              }`,
+            }}
           >
             <ListItemIcon>
               {index === 0 ? (
@@ -108,7 +114,12 @@ const SideTopBar = (props) => {
           key="help"
           component={Link}
           to="/help"
-          sx={{ color: "inherit" }}
+          sx={{
+            color: "inherit",
+            backgroundColor: `${
+              location.pathname === "/help" ? "#F5F6FA" : ""
+            }`,
+          }}
         >
           <ListItemIcon>
             <HelpIcon />

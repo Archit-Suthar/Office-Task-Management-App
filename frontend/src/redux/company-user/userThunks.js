@@ -16,7 +16,6 @@ export const companyUserRegister = createAsyncThunk(
 
       return response.data.user;
     } catch (e) {
-      // console.log("ss", e);
       if (e.code === "ERR_NETWORK") {
         return thunkAPI.rejectWithValue(e);
       } else {
@@ -38,7 +37,11 @@ export const loginUser = createAsyncThunk(
       });
       return response.data.user;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.response.data);
+      if (e.code === "ERR_NETWORK") {
+        return thunkAPI.rejectWithValue(e);
+      } else {
+        return thunkAPI.rejectWithValue(e.response.data);
+      }
     }
   }
 );
